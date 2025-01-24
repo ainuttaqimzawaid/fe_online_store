@@ -10,8 +10,8 @@ export default function Logout() {
   const history = useNavigate();
   useEffect(() => {
     logoutUser()
-      .then(_ => dispatch(userLogout()))
-      .then(_ => history('/'));
+      .then((_) => dispatch(userLogout()))
+      .then((_) => history('/'));
   }, [dispatch, history])
   return (
     <div className="d-flex justify-content-center">

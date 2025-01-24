@@ -21,17 +21,10 @@ function TopBar() {
             })
     }, [])
 
-    const renderCategories = () => {
-        return categories.map((category, i) => {
-            return <Nav.Link key={i} active={category.name === products.category}
-                onClick={() => dispatch(setCategory(category.name))}>{category.name}</Nav.Link>
-        })
-    }
-
     const authStatus = () => {
         return auth.user ? <LinkContainer to={'/account'}>
             <Nav.Link title="Profil">
-                <p>wes login</p>
+                <p>{auth.user.full_name}</p>
             </Nav.Link>
         </LinkContainer>
             :
@@ -56,7 +49,9 @@ function TopBar() {
             zIndex: "900"
         }} expand="lg" >
             <Container fluid>
-                <Navbar.Brand style={{ marginLeft: "70px" }} href="#">Navbar scroll</Navbar.Brand>
+                <LinkContainer to="/" style={{ marginLeft: "70px" }}>
+                    <Navbar.Brand >FoodStore</Navbar.Brand>
+                </LinkContainer>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <div style={{ display: "flex", flexDirection: 'column' }}>
@@ -71,7 +66,12 @@ function TopBar() {
                             <Button variant="outline-success">Search</Button>
                         </Form>
                         <div style={{ display: "flex", justifyContent: "space-around", marginTop: "9px", marginRight: "50px", marginBottom: "5px" }}>
-                            {renderCategories()}
+                            {
+                                categories.map((category, i) => (
+                                    <Nav.Link key={i} active={category.name === products.category}
+                                        onClick={() => dispatch(setCategory(category.name))}>{category.name}</Nav.Link>
+                                ))
+                            }
                         </div>
                     </div>
                     <Nav

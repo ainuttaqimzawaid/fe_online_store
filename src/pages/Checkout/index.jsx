@@ -9,6 +9,7 @@ import { clearItem } from '../../app/features/Cart/actions';
 import { config } from '../../config';
 import { formatRupiah, sumPrice } from '../../utils';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import TopBar from '../../components/TopBar';
 
 const AddressData = ({ setAddressData }) => {
     const [address, setAddress] = useState([]);
@@ -104,24 +105,27 @@ export default function Checkout() {
     }
 
     return (
-        <Container className="mt-5 p-5">
-            {console.log('asdfghjklZxcvbnm,sdfdsghj')}
-            <Card>
-                <Card.Header>
-                    Checkout
-                </Card.Header>
-                <Card.Body>
-                    <Routes>
-                        <Route path={`/`}
-                            element={<AddressData setAddressData={address => setSelectedAddress(address)} />}
-                        />
-                        <Route path={`/confirm`}
-                            element={<Confirmation data={selectedAddress} onClick={handleCreateOrder} />}
-                        />
-                    </Routes>
-                </Card.Body>
-            </Card>
+        <div>
+            <TopBar />
+            <Container className=" p-5" style={{ marginTop: "145px" }}>
+                {console.log('asdfghjklZxcvbnm,sdfdsghj')}
+                <Card>
+                    <Card.Header>
+                        Checkout
+                    </Card.Header>
+                    <Card.Body>
+                        <Routes>
+                            <Route path={`/`}
+                                element={<AddressData setAddressData={address => setSelectedAddress(address)} />}
+                            />
+                            <Route path={`/confirm`}
+                                element={<Confirmation data={selectedAddress} onClick={handleCreateOrder} />}
+                            />
+                        </Routes>
+                    </Card.Body>
+                </Card>
 
-        </Container>
+            </Container>
+        </div>
     )
 }

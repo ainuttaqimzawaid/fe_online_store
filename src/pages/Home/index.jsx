@@ -28,6 +28,7 @@ export const Home = () => {
     return (
         <div>
             <TopBar />
+            {console.log(products)}
             <div
                 style={{
                     width: '100w',

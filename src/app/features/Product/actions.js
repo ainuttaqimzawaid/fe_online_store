@@ -34,6 +34,7 @@ export const fetchProducts = () => {
         }
         try {
             let { data: { data, count } } = await debouncedFetchProducts(params);
+            // console.log({ data, count });
             dispatch(successFetchingProduct({ data, count }));
         } catch (error) {
             console.log(error)

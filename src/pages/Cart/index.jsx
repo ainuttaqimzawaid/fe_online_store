@@ -6,6 +6,7 @@ import { config } from '../../config';
 import { addItem, removeItem } from '../../app/features/Cart/actions';
 import { formatRupiah, sumPrice } from '../../utils';
 import { useNavigate } from 'react-router-dom';
+import TopBar from '../../components/TopBar';
 
 
 export default function Cart() {
@@ -51,29 +52,32 @@ export default function Cart() {
   ]
 
   return (
-    <Container className="mt-5 p-5">
-      <Card>
-        <Card.Header>
-          keranjang Belanja
-        </Card.Header>
-        <Card.Body>
-          <DataTable
-            columns={columns}
-            data={cart}
-            striped
-            title={`Sub Total: ${formatRupiah(sumPrice(cart))}`}
-          />
-        </Card.Body>
-        <Card.Footer>
-          <div className="d-grid gap-2">
-            {cart.length > 0 && auth.user ?
-              <Button variant="primary" size="md" onClick={_ => history('/checkout')}>
-                Checkout
-              </Button> : null
-            }
-          </div>
-        </Card.Footer>
-      </Card>
-    </Container>
+    <div>
+      <TopBar />
+      <Container className="p-5" style={{ marginTop: "145px" }}>
+        <Card>
+          <Card.Header>
+            keranjang Belanja
+          </Card.Header>
+          <Card.Body>
+            <DataTable
+              columns={columns}
+              data={cart}
+              striped
+              title={`Sub Total: ${formatRupiah(sumPrice(cart))}`}
+            />
+          </Card.Body>
+          <Card.Footer>
+            <div className="d-grid gap-2">
+              {cart.length > 0 && auth.user ?
+                <Button variant="primary" size="md" onClick={_ => history('/checkout')}>
+                  Checkout
+                </Button> : null
+              }
+            </div>
+          </Card.Footer>
+        </Card>
+      </Container>
+    </div>
   )
 }

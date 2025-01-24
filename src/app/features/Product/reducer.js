@@ -27,7 +27,9 @@ export default function productReducer(state = initialState, { type, payload }) 
             return { ...state, status: statusList.error }
 
         case SUCCESS_FETCHING_PRODUCT:
-            return { ...state, status: statusList.success, data: payload.data, totalItems: payload.count }
+            let sate = { ...state, status: statusList.success, data: payload.data, totalItems: payload.count }
+            // console.log(sate)
+            return sate
 
         case SET_PAGE:
             return { ...state, currentPage: payload.currentPage }

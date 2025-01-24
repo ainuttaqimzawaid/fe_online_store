@@ -16,7 +16,7 @@ export default function Order() {
     <div>
       <DataTable
         columns={[
-          { name: 'Order ID', cell: row => `#${row.order_number}` },
+          // { name: 'Order ID', cell: row => `#${row.order_number}` },
           { name: 'Total', cell: row => formatRupiah(sumPrice(row.order_items)) },
           { name: 'Status', cell: row => row.status },
           { name: 'Invoice', cell: row => <LinkContainer to={`/invoices/${row._id}`}><Button variant="success" size="sm">Invoices</Button></LinkContainer> },

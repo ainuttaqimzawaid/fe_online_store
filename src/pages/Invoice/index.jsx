@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router'
 import { getInvoiceByOrderId } from '../../app/api/order';
 import { formatRupiah } from '../../utils';
+import TopBar from '../../components/TopBar';
 
 export default function Invoices() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function Invoices() {
   const builderData = useCallback(data => {
     return [
       { label: 'Status', value: data.payment_status },
-      { label: 'Order ID', value: `#${data.order.order_number}` },
+      { label: 'Order ID', value: `#${data.order._id}` },
       { label: 'Total Amount', value: formatRupiah(data.total) },
       {
         label: 'Billed to', value: <div>
@@ -57,24 +58,26 @@ export default function Invoices() {
   }, [id, builderData]);
 
   return (
-    <Container className="mt-5 p-5">
-
-      <Card>
-        <Card.Header>
-          Invoices
-        </Card.Header>
-        <Card.Body>
-          {!isFetching ? console.log(invoice) &&
-            <DataTable
-              data={invoice}
-              columns={[
-                { selector: row => row.label },
-                { cell: row => row.value },
-              ]}
-            /> : null
-          }
-        </Card.Body>
-      </Card>
-    </Container>
+    <div>
+      <TopBar />
+      <Container className=" p-5" style={{ marginTop: "145px" }}>
+        <Card>
+          <Card.Header>
+            Invoices
+          </Card.Header>
+          <Card.Body>
+            {!isFetching ?
+              <DataTable
+                data={invoice}
+                columns={[
+                  { selector: row => row.label },
+                  { cell: row => row.value },
+                ]}
+              /> : null
+            }
+          </Card.Body>
+        </Card>
+      </Container>
+    </div>
   )
 }

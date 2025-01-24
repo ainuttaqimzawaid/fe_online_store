@@ -11,11 +11,12 @@ export const logoutUser = async () => {
     let { token } = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')) : {};
 
     return await axios.post(`${config.api_host}/auth/logout`, null, {
-        header: {
+        headers: {
             authorization: `Bearer ${token}`
         }
-    }).then(res => {
-        localStorage.removeItem('auth');
-        return res
-    });
+    })
+        .then(res => {
+            localStorage.removeItem('auth');
+            return res
+        });
 }
